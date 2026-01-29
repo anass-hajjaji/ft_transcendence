@@ -1,0 +1,6 @@
+ignoredBuiltDependencies:
+  - deasync
+
+onlyBuiltDependencies:
+  - esbuild
+  - sqlite3
