@@ -74,10 +74,6 @@ The ft_transcendence platform is a fully integrated solution designed to enhance
 - `POST /api/auth/login`: Authenticate user and return token.
 - `GET /api/chats/:chatId`: Retrieve chat messages.
 
-## Project Structure
-- **/src:** Contains the main application code.
-- **/tests:** Contains unit and integration tests.
-- **/docs:** Contains additional documentation and API specs.
 
 ## Features
 - Real-time messaging using Socket.IO.
