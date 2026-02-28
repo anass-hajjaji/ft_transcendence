@@ -1,77 +1,90 @@
-# Project Documentation for FT_Transcendence
+# ft_transcendence Project Documentation
 
 ## Project Overview
-FT_Transcendence is a chat application designed to facilitate real-time communication among users. It utilizes modern web technologies to provide a seamless and interactive experience.
+
+The ft_transcendence platform is a fully integrated solution designed to enhance user communication and gaming experiences. The platform encompasses multiple modules including chat functionality, friend management, gaming features, and user account management. It serves as a centralized hub for users to connect, compete, and communicate seamlessly.
 
 ## Tech Stack
-- **Language**: TypeScript (98.6%)
-- **Framework**: Node.js with Express
-- **Database**: PostgreSQL
-- **Real-time Communication**: Socket.IO
-- **Frontend**: React.js
+
+- **Frontend:** TypeScript 98.6%, React
+- **Backend:** Node.js, Express
+- **Database:** PostgreSQL
+- **Real-Time Communication:** Socket.IO
 
 ## Database Schema
-```
-User {
-  id: UUID,
-  username: String,
-  email: String,
-  password: String,
-  createdAt: Date,
-  updatedAt: Date
-}
 
-Message {
-  id: UUID,
-  senderId: UUID,
-  receiverId: UUID,
-  content: String,
-  timestamp: Date
-}
+### Users Table
+- **user_id:** Integer (Primary Key)
+- **username:** Varchar(50)
+- **email:** Varchar(100)
+- **password_hash:** Varchar(255)
 
-ChatRoom {
-  id: UUID,
-  name: String,
-  participants: Array<UUID>
-}
-```
+### Friends Table
+- **user_id:** Integer (Foreign Key)
+- **friend_id:** Integer (Foreign Key)
+- **created_at:** Timestamp
 
-## Chat Module Documentation with Socket.IO Events
-- **Connection Event**: `socket.on('connect', callback)` - called when a user connects to the server.
-- **Message Sending**: `socket.emit('message', { senderId, content })` - sends a message to the server.
-- **Receive Messages**: `socket.on('message', callback)` - receives a message from the server.
-- **User Typing**: `socket.emit('typing', { userId })` - indicates that a user is typing a message.
-- **Disconnect Event**: `socket.on('disconnect', callback)` - called when a user disconnects from the server.
+### Game Table
+- **game_id:** Integer (Primary Key)
+- **user_id:** Integer (Foreign Key)
+- **game_status:** Varchar(50)
+- **created_at:** Timestamp
 
-## Validation Schemas
-- **User Registration**: Validate username, email, and password.
-- **Message Content**: Validate message length and formatting.
+### Chat Table
+- **chat_id:** Integer (Primary Key)
+- **user_id:** Integer (Foreign Key)
+- **message_count:** Integer
+- **created_at:** Timestamp
 
-## Usage Examples
-```javascript
-// Sending a message
-socket.emit('message', { senderId: user.id, content: 'Hello!' });
+### Message Table
+- **message_id:** Integer (Primary Key)
+- **chat_id:** Integer (Foreign Key)
+- **sender_id:** Integer (Foreign Key)
+- **content:** Text
+- **created_at:** Timestamp
 
-// Handling incoming messages
-socket.on('message', (message) => {
-  console.log(`Received message: ${message.content}`);
-});
-```
+### Blocked Users Table
+- **user_id:** Integer (Foreign Key)
+- **blocked_user_id:** Integer (Foreign Key)
 
-## Security Features
-- **Data Encryption**: Passwords hashed using bcrypt.
-- **Input Validation**: Sanitizing inputs to prevent SQL injection and XSS.
-- **Authentication**: JSON Web Tokens (JWT) for secure user authentication.
+## Chat Module Documentation
 
-## Getting Started Guide
-1. Clone the repository: `git clone https://github.com/anass-hajjaji/ft_transcendence.git`
-2. Navigate to the project directory: `cd ft_transcendence`
-3. Install dependencies: `npm install`
-4. Run the application: `npm start`
+### Socket.IO Events
+- **message:** Triggers when a message is sent in a chat.
+- **join:** Emitted when a user joins a chat.
+- **leave:** Emitted when a user leaves a chat.
+- **typing:** Indicates that a user is typing a message.
+
+### Validation Schemas
+- All inputs are validated using Yup to ensure data integrity.
+
+### Security Features
+- JWT (JSON Web Tokens) for user authentication and session management.
+- Rate limiting on API endpoints to prevent abuse.
+- Data sanitization to prevent XSS and SQL injection attacks.
+
+## Getting Started
+1. **Clone the repo:** `git clone https://github.com/anass-hajjaji/ft_transcendence.git`
+2. **Install dependencies:** `npm install`
+3. **Run the application:** `npm start`
+4. **Open your browser and navigate to:** `http://localhost:3000`
 
 ## API Endpoints
-- **POST /api/auth/register**: Register a new user.
-- **POST /api/auth/login**: Authenticate user and return JWT.
-- **GET /api/messages**: Retrieve messages for a user.
-- **POST /api/messages**: Send a new message.
-- **GET /api/chatrooms**: Get user chat rooms.
+- `POST /api/users`: Create a new user.
+- `POST /api/auth/login`: Authenticate user and return token.
+- `GET /api/chats/:chatId`: Retrieve chat messages.
+
+## Project Structure
+- **/src:** Contains the main application code.
+- **/tests:** Contains unit and integration tests.
+- **/docs:** Contains additional documentation and API specs.
+
+## Features
+- Real-time messaging using Socket.IO.
+- User authentication and authorization.
+- Friend management system.
+- Complete gaming functionalities.
+
+## Author Information
+- **Name:** Anass Hajjaji
+- **GitHub:** [anass-hajjaji](https://github.com/anass-hajjaji)
