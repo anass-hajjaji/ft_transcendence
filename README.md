@@ -1,8 +1,12 @@
 # ft_transcendence Project Documentation
 
+## Summary
+
+ft_transcendence is a full-stack web platform that combines real-time chat, social features, and multiplayer gaming in a single experience. It brings together user accounts, friend management, game sessions, and live messaging so users can connect, compete, and communicate seamlessly.
+
 ## Project Overview
 
-The ft_transcendence platform is a fully integrated solution designed to enhance user communication and gaming experiences. The platform encompasses multiple modules including chat functionality, friend management, gaming features, and user account management. It serves as a centralized hub for users to connect, compete, and communicate seamlessly.
+This repository is a group project built collaboratively. My contributions focused on the real-time chat module and the translator module.
 
 ## Tech Stack
 
@@ -77,6 +81,7 @@ The ft_transcendence platform is a fully integrated solution designed to enhance
 
 ## Features
 - Real-time messaging using Socket.IO.
+- Translator module for multilingual communication.
 - User authentication and authorization.
 - Friend management system.
 - Complete gaming functionalities.
