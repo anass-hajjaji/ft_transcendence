@@ -57,7 +57,7 @@ A full-stack real-time multiplayer gaming platform built with modern web technol
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/anass-hajjaji/ft_transcendence
+   git clone https://github.com/anass-hajjaji/ft_transcendence.git
    cd ft_transcendence
    ```
 2.  **Configure environment variables**
